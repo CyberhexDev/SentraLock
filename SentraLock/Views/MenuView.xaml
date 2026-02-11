@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="SentraLock.Views.MenuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:fa="clr-namespace:FontAwesome.Sharp;assembly=FontAwesome.Sharp"
+			 xmlns:viewModel="clr-namespace:SentraLock.ViewModels"
+             xmlns:local="clr-namespace:SentraLock.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="450">
+	<UserControl.DataContext>
+		<viewModel:MenuViewModel/>
+	</UserControl.DataContext>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<Grid Grid.Column="0" Margin="50">
+			<Button Style="{StaticResource menuButton}" Command="{Binding ShowEncryptViewCommand}">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="*"/>
+					</Grid.RowDefinitions>
+					<fa:IconImage Grid.Row="0" Icon="Lock" Foreground="{StaticResource supportSolidBrush}"/>
+					<TextBlock Grid.Row="1" Text="Encrypt" FontFamily="{StaticResource Montserrat-EB}" FontWeight="ExtraBold"/>
+				</Grid>
+			</Button>
+		</Grid>
+		<Grid Grid.Column="1" Margin="50">
+			<Button Style="{StaticResource menuButton}" Command="{Binding ShowDecryptViewCommand}">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="*"/>
+					</Grid.RowDefinitions>
+					<fa:IconImage Grid.Row="0" Icon="LockOpen" Foreground="{StaticResource supportSolidBrush}"/>
+					<TextBlock Grid.Row="1" Text="Decrypt" FontFamily="{StaticResource Montserrat-EB}" FontWeight="ExtraBold"/>
+				</Grid>
+			</Button>
+		</Grid>
+	</Grid>
+</UserControl>

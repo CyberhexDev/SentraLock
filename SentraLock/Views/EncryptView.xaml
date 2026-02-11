@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="SentraLock.Views.EncryptView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:fa="clr-namespace:FontAwesome.Sharp;assembly=FontAwesome.Sharp"
+			 xmlns:viewModel="clr-namespace:SentraLock.ViewModels"
+             xmlns:local="clr-namespace:SentraLock.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="450">
+	<UserControl.DataContext>
+		<viewModel:EncryptViewModel/>
+	</UserControl.DataContext>
+	<Grid Margin="5" VerticalAlignment="Top">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="25"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid Grid.Row="0" Margin="0,0,380,5">
+			<Button Style="{StaticResource menuButton}" Command="{Binding ShowMenuViewModelCommand}">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+					</Grid.ColumnDefinitions>
+					<fa:IconBlock Grid.Column="0" Icon="ArrowLeft" Margin="0,3,0,3"/>
+					<TextBlock Grid.Column="1" Text="Back" FontFamily="{StaticResource Poppins-Black}" FontWeight="Black" VerticalAlignment="Center"/>
+				</Grid>
+			</Button>
+		</Grid>
+		<Grid Grid.Row="1" Margin="0,0,0,5">
+			<TextBlock Text="Select a file to encrypt:"/>
+		</Grid>
+		<Grid Grid.Row="2" Margin="0,0,0,5">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="3*"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			<TextBox Grid.Column="0" x:Name="filePathTextBox" Text="{Binding FileName, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Margin="0,0,5,0"/>
+			<Button Grid.Column="1" Content="Browse" FontFamily="{StaticResource Montserrat-EB}" FontWeight="ExtraBold" Style="{StaticResource menuButton}" Command="{Binding BrowseFileCommand}" Margin="5,0,0,0"/>
+		</Grid>
+		<Grid Grid.Row="3" Margin="0,0,0,5">
+			<TextBlock Text="Enter a password:"/>
+		</Grid>
+		<Grid Grid.Row="4">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="3*"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			<PasswordBox Grid.Column="0" x:Name="passwordBox" PasswordChanged="passwordBox_PasswordChanged" Margin="0,0,5,0" />
+			<Button Grid.Column="1" Content="Encrypt" FontFamily="{StaticResource Montserrat-EB}" FontWeight="ExtraBold" Style="{StaticResource menuButton}" Command="{Binding EncryptFileCommand}" Margin="5,0,0,0"/>
+		</Grid>
+		<Grid Grid.Row="5">
+			<TextBlock Text="{Binding MessageLabelText}" HorizontalAlignment="Center" FontFamily="{StaticResource Poppins-Black}" Foreground="{StaticResource optionalHighlightBrush}" FontWeight="Black" Margin="0,15,0,0"/>
+		</Grid>
+	</Grid>
+</UserControl>
